@@ -29,4 +29,5 @@ $ chmod +x /bin/ionic-release
 `
 
 For more information about what those commands are doing and releasing of Ionic applications in general, please visit:
+
 [Ionic release guide] (http://ionicframework.com/docs/guide/publishing.html)

@@ -1,0 +1,11 @@
+#!/bin/bash
+CURRENTPATH=`pwd`
+cordova build --release android
+rm app.apk
+keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+mv platforms/android/build/outputs/apk/android-release-unsigned.apk ./
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore android-release-unsigned.apk alias_name
+cd /home/danielius/Android/Sdk/build-tools/23.0.2/
+./zipalign -v 4 $CURRENTPATH/android-release-unsigned.apk $CURRENTPATH/app.apk
+cd $CURRENTPATH
+rm android-release-unsigned.apk
